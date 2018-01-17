@@ -8,7 +8,7 @@
 
 namespace pashamray\zombie\rest\client;
 
-class Client
+class TgClient
 {
     protected $API_URL = '/zombie/api';
     protected $API_VER = 'v1.0';
@@ -79,7 +79,7 @@ class Client
                 return json_decode($res->getBody());
                 break;
         }
-        return new ClientException("Exception", 500);
+        return new TgClientException("Exception", 500);
     }
 
     public function accounts()

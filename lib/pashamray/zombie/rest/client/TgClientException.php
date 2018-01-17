@@ -7,7 +7,7 @@
  */
 namespace pashamray\zombie\rest\client;
 
-class ClientException extends \Exception
+class TgClientException extends \Exception
 {
 
 }
