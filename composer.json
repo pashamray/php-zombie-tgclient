@@ -1,0 +1,31 @@
+{
+    "name": "pashamray/php-zombie-tgclient",
+    "description": "php-client for zombie rest multi telegram client",
+    "type": "library",
+    "license": "MPL-2.0",
+    "authors": [
+        {
+            "name": "pashamray",
+            "email": "pashamray@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/pashamray/php-discovery-shell"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "pashamray/discovery-shell": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "pashamray\\zombie\\rest\\client\\": "lib/"
+        }
+    }
+}
