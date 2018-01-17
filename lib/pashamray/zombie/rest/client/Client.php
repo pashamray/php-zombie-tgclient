@@ -6,6 +6,8 @@
  * Time: 10:08
  */
 
+namespace pashamray\zombie\rest\client;
+
 class Client
 {
     protected $API_URL = '/zombie/api';
@@ -20,7 +22,7 @@ class Client
         $this->host = $host;
         $this->port = $port;
 
-        $this->client = new GuzzleHttp\Client();
+        $this->client = new \GuzzleHttp\Client();
     }
 
     private function makeurl($method, $params = [])
