@@ -10,7 +10,7 @@ namespace pashamray\zombie\rest\client;
 
 class TgClient
 {
-    protected $API_URL = '/zombie/api';
+    protected $API_URL = 'zombie/api';
     protected $API_VER = 'v1.0';
 
     private $client;

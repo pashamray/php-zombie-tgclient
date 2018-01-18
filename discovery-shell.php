@@ -9,7 +9,7 @@
  */
 require('vendor/autoload.php');
 
-$telegram = new \Zyberspace\Telegram\Cli\Client('unix:///tmp/tg.sck');
+$client = new \pashamray\zombie\rest\client\TgClient('localhost', 5555);
 
-$discoverShell = new \Zyberspace\DiscoveryShell($telegram, 'telegram', __DIR__ . '/.developer-shell-history');
+$discoverShell = new \Zyberspace\DiscoveryShell($client, 'TgClient', __DIR__ . '/.developer-shell-history');
 $discoverShell->run();

@@ -18,14 +18,16 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.0",
+        "guzzlehttp/guzzle": "~6.0"
     },
     "require-dev": {
-        "pashamray/discovery-shell": "dev-master"
+        "pashamray/discovery-shell": "dev-master",
+        "phpunit/phpunit": "^6"
     },
     "autoload": {
-        "psr-0": {
-            "pashamray\\zombie\\rest\\client\\": "lib/"
-        }
+        "classmap": [
+            "src/"
+        ]
     }
 }
