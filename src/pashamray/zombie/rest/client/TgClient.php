@@ -52,9 +52,6 @@ class TgClient
             case 'channel':
                 $url .= 'account/'.$params['phone'].'/channel/'.$params['channel_id'];
                 break;
-            case 'channel_members':
-                $url .= 'account/'.$params['phone'].'/channel/'.$params['channel_id'].'/members';
-                break;
         }
 
         return $url;
@@ -131,15 +128,6 @@ class TgClient
     public function chennel($phone, $channel_id)
     {
         $url = $this->makeurl('channel', [
-            'phone' => $phone,
-            'channel_id' => $channel_id
-        ]);
-        return $this->request($url);
-    }
-
-    public function chennel_members($phone, $channel_id)
-    {
-        $url = $this->makeurl('channel_members', [
             'phone' => $phone,
             'channel_id' => $channel_id
         ]);
