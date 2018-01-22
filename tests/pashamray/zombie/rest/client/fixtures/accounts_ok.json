@@ -1,0 +1,20 @@
+{
+  "result": {
+    "accounts": [
+      {
+        "is_auth": true,
+        "is_connected": true,
+        "phone": "380637503951"
+      },
+      {
+        "is_auth": true,
+        "is_connected": true,
+        "phone": "380985237165"
+      }
+    ]
+  },
+  "status": {
+    "code": 200,
+    "msg": "OK"
+  }
+}

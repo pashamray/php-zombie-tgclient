@@ -1,0 +1,314 @@
+{
+  "result": {
+    "chats": [
+      {
+        "id": 179834631,
+        "members_count": 12,
+        "title": "CONVI | TrueTest.me"
+      },
+      {
+        "id": 309412465,
+        "members_count": 5,
+        "title": "\u041f\u043e\u0441\u043a\u043e\u0442"
+      },
+      {
+        "id": 208722586,
+        "members_count": 7,
+        "title": "\u041c\u0430\u043a-\u0428\u0430\u0443\u0440\u043c\u0430"
+      },
+      {
+        "id": 196076941,
+        "members_count": 6,
+        "title": "CONVI | \u041a\u0440\u0443\u0442\u044b\u0435 \u0434\u044f\u0434\u044c\u043a\u0438"
+      },
+      {
+        "id": 14519638,
+        "members_count": 24,
+        "title": "\u0421\u043f\u0430\u043c, \u043e\u0431\u0449\u0430\u043b\u043a\u0430 \u0438 \u043f\u0435\u0447\u0435\u043d\u044c\u043a\u0438"
+      },
+      {
+        "id": 238446488,
+        "members_count": 3,
+        "title": "convidev | status"
+      },
+      {
+        "id": 290773200,
+        "members_count": 10,
+        "title": "\u0421\u0432\u043e\u0431\u043e\u0434\u0430 \u0441\u043b\u043e\u0432\u0430"
+      },
+      {
+        "id": 134584317,
+        "members_count": 10,
+        "title": "CONVI | RIP_plugins"
+      },
+      {
+        "id": 211410251,
+        "members_count": 31,
+        "title": "\u0421\u0438\u0433\u043d\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044f"
+      },
+      {
+        "id": 166232716,
+        "members_count": 20,
+        "title": "Adbless | \u041e\u0440\u0433 \u0432\u043e\u043f\u0440\u043e\u0441\u044b"
+      },
+      {
+        "id": 270880243,
+        "members_count": 20,
+        "title": "Adbless | \u0418\u0414\u0415\u0418"
+      },
+      {
+        "id": 213536849,
+        "members_count": 5,
+        "title": "CONVI | AdBlock"
+      },
+      {
+        "id": 31039890,
+        "members_count": 11,
+        "title": "\u041a\u043e\u043c\u043d\u0430\u0442\u0430 #1"
+      },
+      {
+        "id": 293602385,
+        "members_count": 2,
+        "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0433\u0440\u0443\u043f\u043f\u0430"
+      }
+    ],
+    "users": [
+      {
+        "access_hash": 4120125709666890839,
+        "first_name": "BotFather",
+        "id": 93372553,
+        "last_name": null,
+        "phone": null,
+        "username": "BotFather"
+      },
+      {
+        "access_hash": -2068055488677286509,
+        "first_name": "Inna",
+        "id": 219231470,
+        "last_name": "Dosha",
+        "phone": "380635896062",
+        "username": "Inna_Dosha"
+      },
+      {
+        "access_hash": -6187301029350584613,
+        "first_name": "\u041f\u0430\u0440\u0430\u043c\u0430\u0443\u043d\u0442 \u0415\u043d\u0442\u0435\u0440\u0442\u0435\u0438\u043d\u043c\u0435\u043d\u0442",
+        "id": 119717923,
+        "last_name": null,
+        "phone": null,
+        "username": "Hpkns"
+      },
+      {
+        "access_hash": 8497515263153187885,
+        "first_name": "\u0422\u0430\u0442\u044c\u044f\u043d\u0430",
+        "id": 132547686,
+        "last_name": null,
+        "phone": "380992843840",
+        "username": "T_myrza"
+      },
+      {
+        "access_hash": -7042943040820758996,
+        "first_name": "Dima",
+        "id": 206524293,
+        "last_name": null,
+        "phone": null,
+        "username": "Panikajo"
+      },
+      {
+        "access_hash": -1264639503101814471,
+        "first_name": "p",
+        "id": 326587655,
+        "last_name": "s",
+        "phone": "380637503951",
+        "username": "pashamray"
+      },
+      {
+        "access_hash": 695725879568224394,
+        "first_name": "Slavik",
+        "id": 126440859,
+        "last_name": "s",
+        "phone": null,
+        "username": "Nbnfybr"
+      },
+      {
+        "access_hash": -2317336042088335327,
+        "first_name": "Denis",
+        "id": 67762512,
+        "last_name": "Alekseenko",
+        "phone": "380675855158",
+        "username": "Odesoftami"
+      },
+      {
+        "access_hash": 8532339069153008406,
+        "first_name": "Irina",
+        "id": 447886461,
+        "last_name": "Khrunina",
+        "phone": null,
+        "username": null
+      },
+      {
+        "access_hash": -3670345823124343742,
+        "first_name": "\u041d\u043e\u0432\u0430 \u041f\u043e\u0448\u0442\u0430",
+        "id": 216910109,
+        "last_name": null,
+        "phone": null,
+        "username": "NovaPoshta_Bot"
+      },
+      {
+        "access_hash": 6536614691198587601,
+        "first_name": "\u0422\u0438\u043c\u0443\u0440",
+        "id": 2568033,
+        "last_name": "\ud83c\udf85",
+        "phone": null,
+        "username": "zolter"
+      },
+      {
+        "access_hash": 4896534183238778968,
+        "first_name": "\u0412\u0438\u0442\u0430\u043b\u0438\u043a",
+        "id": 171311304,
+        "last_name": "\u0417\u0430\u044f\u0447\u043a\u0438\u043d",
+        "phone": "380631569639",
+        "username": null
+      },
+      {
+        "access_hash": -2112060908375181951,
+        "first_name": "Telegram",
+        "id": 777000,
+        "last_name": null,
+        "phone": "42777",
+        "username": null
+      },
+      {
+        "access_hash": -5137104986537542653,
+        "first_name": "\u0413\u0435\u0440\u043c\u0430\u043d",
+        "id": 364431645,
+        "last_name": null,
+        "phone": "380682576060",
+        "username": null
+      },
+      {
+        "access_hash": 6876261741314102580,
+        "first_name": "Zgoda",
+        "id": 363960722,
+        "last_name": "Kostya",
+        "phone": null,
+        "username": "marazlievskiy"
+      },
+      {
+        "access_hash": -4246998498790891073,
+        "first_name": "MikeSan",
+        "id": 330462173,
+        "last_name": null,
+        "phone": null,
+        "username": "Mi7827"
+      },
+      {
+        "access_hash": 5750937435170143307,
+        "first_name": "Vitalik",
+        "id": 69125143,
+        "last_name": "P.",
+        "phone": null,
+        "username": "rip1er"
+      },
+      {
+        "access_hash": 6602197477128501860,
+        "first_name": "\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440",
+        "id": 101727963,
+        "last_name": "\u041b\u044b\u043c\u0430\u0440\u0447\u0443\u043a",
+        "phone": "380930794948",
+        "username": "lymarchuk"
+      },
+      {
+        "access_hash": -4414426962961758719,
+        "first_name": "tgZero Bot",
+        "id": 349920070,
+        "last_name": null,
+        "phone": null,
+        "username": "tgzero_bot"
+      },
+      {
+        "access_hash": 6047013623744203117,
+        "first_name": "\u042f\u043d\u0430",
+        "id": 225869751,
+        "last_name": null,
+        "phone": null,
+        "username": "Yasha_V"
+      },
+      {
+        "access_hash": 7859705166860893333,
+        "first_name": "SystemMonitor",
+        "id": 458513610,
+        "last_name": null,
+        "phone": null,
+        "username": "sysmo_bot"
+      },
+      {
+        "access_hash": -2218297494015517493,
+        "first_name": "\u0418\u0432\u0430\u043d",
+        "id": 490637759,
+        "last_name": "\u0418\u0432\u0430\u043d\u043e\u0432",
+        "phone": null,
+        "username": null
+      },
+      {
+        "access_hash": -5496804934635155114,
+        "first_name": "\u041c\u0430\u0440\u0438\u044f",
+        "id": 485574700,
+        "last_name": "\u041a\u0440\u0443\u0442 (ico.messenger@gmail.com)",
+        "phone": null,
+        "username": "cryptomessenger"
+      },
+      {
+        "access_hash": 6074265882233266901,
+        "first_name": "Dens is",
+        "id": 454417851,
+        "last_name": "D",
+        "phone": "380962544974",
+        "username": "DenisDeseti"
+      },
+      {
+        "access_hash": -8537048014805468856,
+        "first_name": "\u0421\u043b\u0430\u0432\u0438\u043a",
+        "id": 207645858,
+        "last_name": "\u0421\u0435\u0440\u0435\u0434\u0430",
+        "phone": null,
+        "username": "Kastozar"
+      },
+      {
+        "access_hash": -2818774399188003629,
+        "first_name": "convidev",
+        "id": 147959876,
+        "last_name": null,
+        "phone": null,
+        "username": "convibot"
+      },
+      {
+        "access_hash": 5395474090292257424,
+        "first_name": "telegramconvi",
+        "id": 196484479,
+        "last_name": null,
+        "phone": null,
+        "username": "convi_bot"
+      },
+      {
+        "access_hash": -9045307440338769341,
+        "first_name": "Dmitry",
+        "id": 146658406,
+        "last_name": "Koutsenko",
+        "phone": null,
+        "username": null
+      },
+      {
+        "access_hash": -3006271949793884864,
+        "first_name": "Channel",
+        "id": 136817688,
+        "last_name": null,
+        "phone": null,
+        "username": "Channel_Bot"
+      }
+    ]
+  },
+  "status": {
+    "code": 200,
+    "msg": "OK"
+  }
+}

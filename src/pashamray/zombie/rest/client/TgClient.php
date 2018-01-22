@@ -8,6 +8,8 @@
 
 namespace pashamray\zombie\rest\client;
 
+use pashamray\zombie\rest\client\model\TgZombieAccount;
+
 class TgClient
 {
     protected $API_URL = 'zombie/api';
@@ -84,16 +86,30 @@ class TgClient
 
     public function accounts()
     {
-        $url = $this->makeurl('accounts');
-        return $this->request($url);
+        $request = $this->request(
+            $this->makeurl('accounts')
+        );
+
+        $arr = [];
+
+        foreach ($request->result->accounts as $account)
+        {
+            $arr[] = $this->account($account->phone);
+        }
+
+        return $arr;
     }
 
     public function account($phone)
     {
-        $url = $this->makeurl('account', [
-            'phone' => $phone
-        ]);
-        return $this->request($url);
+        return TgZombieAccount::fromJson(
+            $this->request(
+                $this->makeurl(
+                    'account',
+                    ['phone' => $phone]
+                )
+            )
+        );
     }
 
     public function dialogs($phone)

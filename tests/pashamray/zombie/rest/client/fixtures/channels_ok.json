@@ -1,0 +1,80 @@
+{
+  "result": {
+    "chats": [
+      {
+        "id": 179834631,
+        "members_count": 12,
+        "title": "CONVI | TrueTest.me"
+      },
+      {
+        "id": 309412465,
+        "members_count": 5,
+        "title": "\u041f\u043e\u0441\u043a\u043e\u0442"
+      },
+      {
+        "id": 208722586,
+        "members_count": 7,
+        "title": "\u041c\u0430\u043a-\u0428\u0430\u0443\u0440\u043c\u0430"
+      },
+      {
+        "id": 196076941,
+        "members_count": 6,
+        "title": "CONVI | \u041a\u0440\u0443\u0442\u044b\u0435 \u0434\u044f\u0434\u044c\u043a\u0438"
+      },
+      {
+        "id": 14519638,
+        "members_count": 24,
+        "title": "\u0421\u043f\u0430\u043c, \u043e\u0431\u0449\u0430\u043b\u043a\u0430 \u0438 \u043f\u0435\u0447\u0435\u043d\u044c\u043a\u0438"
+      },
+      {
+        "id": 290773200,
+        "members_count": 10,
+        "title": "\u0421\u0432\u043e\u0431\u043e\u0434\u0430 \u0441\u043b\u043e\u0432\u0430"
+      },
+      {
+        "id": 238446488,
+        "members_count": 3,
+        "title": "convidev | status"
+      },
+      {
+        "id": 166232716,
+        "members_count": 20,
+        "title": "Adbless | \u041e\u0440\u0433 \u0432\u043e\u043f\u0440\u043e\u0441\u044b"
+      },
+      {
+        "id": 211410251,
+        "members_count": 31,
+        "title": "\u0421\u0438\u0433\u043d\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044f"
+      },
+      {
+        "id": 270880243,
+        "members_count": 20,
+        "title": "Adbless | \u0418\u0414\u0415\u0418"
+      },
+      {
+        "id": 213536849,
+        "members_count": 5,
+        "title": "CONVI | AdBlock"
+      },
+      {
+        "id": 134584317,
+        "members_count": 10,
+        "title": "CONVI | RIP_plugins"
+      },
+      {
+        "id": 31039890,
+        "members_count": 11,
+        "title": "\u041a\u043e\u043c\u043d\u0430\u0442\u0430 #1"
+      },
+      {
+        "id": 293602385,
+        "members_count": 2,
+        "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0433\u0440\u0443\u043f\u043f\u0430"
+      }
+    ]
+  },
+  "status": {
+    "code": 200,
+    "msg": "OK"
+  }
+}

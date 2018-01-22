@@ -1,0 +1,16 @@
+{
+  "result": {
+    "account": {
+      "access_hash": -1264639503101814471,
+      "first_name": "p",
+      "id": 326587655,
+      "last_name": "s",
+      "phone": "380637503951",
+      "username": ""
+    }
+  },
+  "status": {
+    "code": 200,
+    "msg": "OK"
+  }
+}
