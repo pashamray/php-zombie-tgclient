@@ -99,14 +99,15 @@ class TgClient
 
     public function account($phone)
     {
-        return TgZombieAccount::fromJson(
-            $this->request(
-                $this->makeurl(
-                    'account',
-                    ['phone' => $phone]
-                )
+        $responce = $this->request(
+            $this->makeurl(
+                'account',
+                ['phone' => $phone]
             )
         );
+        $result = $responce->result;
+        $json = $result->account;
+        return TgZombieAccount::fromJson($json);
     }
 
     public function dialogs($phone)
