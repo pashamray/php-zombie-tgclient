@@ -39,6 +39,7 @@ class TgClient
             case 'connect':
                 $url .= 'account/'.$params['phone'].'/connect';
                 break;
+            case 'delete_account':
             case 'account':
                 $url .= 'account/'.$params['phone'];
                 break;
@@ -110,6 +111,14 @@ class TgClient
         return TgZombieAccount::fromJson($json);
     }
 
+    public function delete_account($phone)
+    {
+        $url = $this->makeurl('delete_account', [
+            'phone' => $phone
+        ]);
+        return $this->request($url, [], 'POST');
+    }
+
     public function dialogs($phone)
     {
         $url = $this->makeurl('dialogs', [
@@ -135,12 +144,50 @@ class TgClient
         return $this->request($url);
     }
 
+    public function send_msg($phone, $chat_id, $msg)
+    {
+        $url = $this->makeurl('send_msg', [
+            'phone' => $phone,
+        ]);
+        return $this->request($url, [
+            'chat_id' => $chat_id,
+            'msg' => $msg
+        ], 'POST');
+    }
+
     public function auth($phone)
     {
         $url = $this->makeurl('auth', [
             'phone' => $phone
         ]);
         return $this->request($url);
+    }
+
+    public function request_code($phone)
+    {
+        $url = $this->makeurl('request_code', [
+            'phone' => $phone
+        ]);
+        return $this->request($url, [], 'POST');
+    }
+
+    public function send_code($phone, $code)
+    {
+        $url = $this->makeurl('send_code', [
+            'phone' => $phone,
+            'code' => $code
+        ]);
+        return $this->request($url, [], 'POST');
+    }
+
+    public function send_password($phone, $password)
+    {
+        $url = $this->makeurl('send_password', [
+            'phone' => $phone,
+        ]);
+        return $this->request($url, [
+            'password' => $password
+        ], 'POST');
     }
 
     public function connect($phone)
