@@ -116,7 +116,7 @@ class TgClient
         $url = $this->makeurl('delete_account', [
             'phone' => $phone
         ]);
-        return $this->request($url, [], 'POST');
+        return $this->request($url, [], 'DELETE');
     }
 
     public function dialogs($phone)
