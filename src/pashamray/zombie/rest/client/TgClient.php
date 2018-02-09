@@ -8,23 +8,29 @@
 
 namespace pashamray\zombie\rest\client;
 
-use pashamray\zombie\rest\client\model\TgZombieAccount;
+use pashamray\zombie\rest\client\errors\TgClientError;
+use yii\base\Component;
 
-class TgClient
+class TgClient extends Component
 {
     protected $API_URL = 'zombie/api';
     protected $API_VER = 'v1.0';
 
+    public $host;
+    public $port;
+
+    private $phone;
     private $client;
-    private $host;
-    private $port;
 
-    public function __construct($host = 'localhost', $port = 5555)
+    public function init()
     {
-        $this->host = $host;
-        $this->port = $port;
-
         $this->client = new \GuzzleHttp\Client();
+    }
+
+    public function account($phone)
+    {
+        $this->phone = $phone;
+        return $this;
     }
 
     private function makeurl($method, $params = [])
@@ -33,168 +39,302 @@ class TgClient
 
         switch ($method)
         {
-            case 'auth':
-                $url .= 'account/'.$params['phone'].'/auth';
+            case 'send_user_msg':
+                $url .= 'accounts/'.$params['phone'].'/send/msg/user';
+                break;
+            case 'send_msg_group':
+                $url .= 'accounts/'.$params['phone'].'/send/msg/group';
                 break;
             case 'connect':
-                $url .= 'account/'.$params['phone'].'/connect';
+                $url .= 'accounts/'.$params['phone'].'/connect';
                 break;
-            case 'delete_account':
-            case 'account':
-                $url .= 'account/'.$params['phone'];
+            case 'account_del':
+            case 'account_add':
+                $url .= 'accounts/'.$params['phone'];
                 break;
-            case 'dialogs':
-            case 'channels':
-                $url .= 'account/'.$params['phone'].'/'.$method;
+            case 'account_request_code':
+                 $url .= 'accounts/'.$params['phone'].'/code/request';
                 break;
-            case 'accounts':
+            case 'account_send_code':
+                $url .= 'accounts/'.$params['phone'].'/code/send';
+                break;
+            case 'account_send_p2fa':
+                $url .= 'accounts/'.$params['phone'].'/send/2fa_pass';
+                break;
+            case 'get_dialogs':
+            case 'get_channels':
+                $url .= 'accounts/'.$params['phone'].'/'.$method;
+                break;
+            case 'get_accounts':
                 $url .= 'accounts';
                 break;
-            case 'channel':
-                $url .= 'account/'.$params['phone'].'/channel/'.$params['channel_id'];
+            case 'get_channel':
+                $url .= 'accounts/'.$params['phone'].'/channel/'.$params['channel_id'];
+                break;
+            case 'channel_get_users':
+                $url .= 'accounts/'.$params['phone'].'/channel/'.$params['channel_id'].'/users';
+                break;
+                break;
+            case 'invite_info':
+                $url .= 'accounts/'.$params['phone'].'/channel/invite/info';
+                break;
+            case 'join_by_invite':
+                $url .= 'accounts/'.$params['phone'].'/channel/invite/join';
                 break;
         }
 
         return $url;
     }
 
+    /**
+     * @param $url
+     * @param array $params
+     * @param string $method
+     * @return mixed
+     * @throws TgClientError
+     */
     private function request($url, $params = [], $method = 'GET')
     {
-        /*
-        $res = $client->request('GET', $this->API_URL .'/'. $this->API_VER. '/' . $method, [
-            'auth' => ['user', 'pass']
-        ]);
-        echo $res->getStatusCode();
-        // "200"
-        echo $res->getHeader('content-type');
-        // 'application/json; charset=utf8'
-        echo $res->getBody();
-        // {"type":"User"...'
-        */
+        $options = [];
 
-        $res = $this->client->request($method, $url, $params);
+        switch ($method)
+        {
+            case 'POST':
+                $options = [
+                    'form_params' => $params
+                ];
+                break;
+            case 'GET':
+                $options = [
+                    'query' => $params
+                ];
+                break;
+
+        }
+
+        $res = $this->client->request($method, $url, $options);
         switch ($res->getStatusCode())
         {
             case 200:
-                return json_decode($res->getBody());
+                $responce = json_decode($res->getBody());
+                if (isset($responce->error))
+                {
+                    throw new TgClientError($responce->error->message, $responce->error->code);
+                }
+                return $responce->result;
                 break;
         }
-        return new TgClientException("Exception", 500);
     }
 
-    public function accounts()
+    /**
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function getAccounts()
     {
-        $request = $this->request(
-            $this->makeurl('accounts')
-        );
-
-        $arr = [];
-
-        foreach ($request->result->accounts as $account)
-        {
-            $arr[] = $this->account($account->phone);
-        }
-
-        return $arr;
+        return $this->request(
+            $this->makeurl('get_accounts')
+        )->accounts;
     }
 
-    public function account($phone)
+    /**
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function getDialogs()
     {
-        $responce = $this->request(
-            $this->makeurl(
-                'account',
-                ['phone' => $phone]
-            )
-        );
-        $result = $responce->result;
-        $json = $result->account;
-        return TgZombieAccount::fromJson($json);
-    }
-
-    public function delete_account($phone)
-    {
-        $url = $this->makeurl('delete_account', [
-            'phone' => $phone
-        ]);
-        return $this->request($url, [], 'DELETE');
-    }
-
-    public function dialogs($phone)
-    {
-        $url = $this->makeurl('dialogs', [
-            'phone' => $phone
+        $url = $this->makeurl('get_dialogs', [
+            'phone' => $this->phone
         ]);
         return $this->request($url);
     }
 
-    public function channels($phone)
+    /**
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function getChannels()
     {
-        $url = $this->makeurl('channels', [
-            'phone' => $phone
+        $url = $this->makeurl('get_channels', [
+            'phone' => $this->phone
         ]);
         return $this->request($url);
     }
 
-    public function chennel($phone, $channel_id)
+    /**
+     * @param $channel_id
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function getChennel($channel_id)
     {
-        $url = $this->makeurl('channel', [
-            'phone' => $phone,
+        $url = $this->makeurl('get_channel', [
+            'phone' => $this->phone,
             'channel_id' => $channel_id
         ]);
         return $this->request($url);
     }
 
-    public function send_msg($phone, $chat_id, $msg)
+    /**
+     * @param $link
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function channelGetInviteInfo($link)
     {
-        $url = $this->makeurl('send_msg', [
-            'phone' => $phone,
+        $url = $this->makeurl('invite_info', [
+            'phone' => $this->phone
         ]);
         return $this->request($url, [
-            'chat_id' => $chat_id,
-            'msg' => $msg
+            'link' => $link
+        ]);
+    }
+
+    /**
+     * @param $user_id
+     * @param $text
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function userSendMessage($user_id, $text)
+    {
+        $url = $this->makeurl('send_user_msg', [
+            'phone' => $this->phone,
+        ]);
+        return $this->request($url, [
+            'user_id' => $user_id,
+            'text' => $text
         ], 'POST');
     }
 
-    public function auth($phone)
+    /**
+     * @param $group_id
+     * @param $msg
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function channelSendMessage($group_id, $msg)
     {
-        $url = $this->makeurl('auth', [
-            'phone' => $phone
+        $url = $this->makeurl('send_channel_msg', [
+            'phone' => $this->phone,
+        ]);
+        return $this->request($url, [
+            'group_id' => $group_id,
+            'text' => $msg
+        ], 'POST');
+    }
+
+    /**
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function accountAdd()
+    {
+        $url = $this->makeurl('account_add', [
+            'phone' => $this->phone
         ]);
         return $this->request($url);
     }
 
-    public function request_code($phone)
+    /**
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function accountDelete()
     {
-        $url = $this->makeurl('request_code', [
-            'phone' => $phone
+        $url = $this->makeurl('account_del', [
+            'phone' => $this->phone
+        ]);
+        return $this->request($url, [], 'DELETE');
+    }
+
+    /**
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function accountRequestCode()
+    {
+        $url = $this->makeurl('account_request_code', [
+            'phone' => $this->phone
         ]);
         return $this->request($url, [], 'POST');
     }
 
-    public function send_code($phone, $code)
+    /**
+     * @param $code
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function accountSendCode($code)
     {
-        $url = $this->makeurl('send_code', [
-            'phone' => $phone,
-            'code' => $code
+        $url = $this->makeurl('account_send_code', [
+            'phone' => $this->phone,
         ]);
-        return $this->request($url, [], 'POST');
+        return $this->request($url, [
+            'code' => $code,
+        ], 'POST');
     }
 
-    public function send_password($phone, $password)
+    /**
+     * @param $password
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function accountSendPassword($password)
     {
-        $url = $this->makeurl('send_password', [
-            'phone' => $phone,
+        $url = $this->makeurl('account_send_p2fa', [
+            'phone' => $this->phone,
         ]);
+
         return $this->request($url, [
             'password' => $password
         ], 'POST');
     }
 
-    public function connect($phone)
+    /**
+     * @throws TgClientError
+     */
+    public function connect()
     {
         $url = $this->makeurl('connect', [
-            'phone' => $phone
+            'phone' => $this->phone
         ]);
+
         return $this->request($url);
+    }
+
+    /**
+     * @param $invite_link
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function joinByInviteLink($invite_link)
+    {
+        $url = $this->makeurl('join_by_invite', [
+            'phone' => $this->phone
+        ]);
+        return $this->request($url, [
+            'link' => $invite_link
+        ], 'POST');
+    }
+
+    /**
+     * @param $channel_id
+     * @param int $offset
+     * @param int $limit
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function channelGetUsers($channel_id, $offset = 0, $limit = 100)
+    {
+        $url = $this->makeurl('channel_get_users', [
+            'phone' => $this->phone,
+            'channel_id' => $channel_id
+        ]);
+
+        return $this->request($url, [
+            'offset' => $offset,
+            'limit' => $limit
+        ])->users;
     }
 }
