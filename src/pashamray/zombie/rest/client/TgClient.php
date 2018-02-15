@@ -40,46 +40,49 @@ class TgClient extends Component
         switch ($method)
         {
             case 'send_user_msg':
-                $url .= 'accounts/'.$params['phone'].'/send/msg/user';
+                $url .= 'account/'.$params['phone'].'/send/msg/user';
                 break;
             case 'send_msg_group':
-                $url .= 'accounts/'.$params['phone'].'/send/msg/group';
+                $url .= 'account/'.$params['phone'].'/send/msg/group';
                 break;
             case 'connect':
-                $url .= 'accounts/'.$params['phone'].'/connect';
+                $url .= 'account/'.$params['phone'].'/connect';
                 break;
             case 'account_del':
             case 'account_add':
-                $url .= 'accounts/'.$params['phone'];
+                $url .= 'account/'.$params['phone'];
                 break;
             case 'account_request_code':
-                 $url .= 'accounts/'.$params['phone'].'/code/request';
+                 $url .= 'account/'.$params['phone'].'/code/request';
                 break;
             case 'account_send_code':
-                $url .= 'accounts/'.$params['phone'].'/code/send';
+                $url .= 'account/'.$params['phone'].'/code/send';
                 break;
             case 'account_send_p2fa':
-                $url .= 'accounts/'.$params['phone'].'/send/2fa_pass';
+                $url .= 'account/'.$params['phone'].'/send/2fa_pass';
                 break;
             case 'get_dialogs':
             case 'get_channels':
-                $url .= 'accounts/'.$params['phone'].'/'.$method;
+                $url .= 'account/'.$params['phone'].'/'.$method;
                 break;
             case 'get_accounts':
                 $url .= 'accounts';
                 break;
             case 'get_channel':
-                $url .= 'accounts/'.$params['phone'].'/channel/'.$params['channel_id'];
+                $url .= 'account/'.$params['phone'].'/channel/'.$params['channel_id'];
+                break;
+            case 'get_channel_updates':
+                $url .= 'account/'.$params['phone'].'/channel/'.$params['channel_id'].'/updates';
                 break;
             case 'channel_get_users':
-                $url .= 'accounts/'.$params['phone'].'/channel/'.$params['channel_id'].'/users';
+                $url .= 'account/'.$params['phone'].'/channel/'.$params['channel_id'].'/users';
                 break;
                 break;
             case 'invite_info':
-                $url .= 'accounts/'.$params['phone'].'/channel/invite/info';
+                $url .= 'account/'.$params['phone'].'/channel/invite/info';
                 break;
-            case 'join_by_invite':
-                $url .= 'accounts/'.$params['phone'].'/channel/invite/join';
+            case 'join_by_link':
+                $url .= 'account/'.$params['phone'].'/channel/join_by_link';
                 break;
         }
 
@@ -121,7 +124,7 @@ class TgClient extends Component
                 {
                     throw new TgClientError($responce->error->message, $responce->error->code);
                 }
-                return $responce->result;
+                return $responce;
                 break;
         }
     }
@@ -134,7 +137,7 @@ class TgClient extends Component
     {
         return $this->request(
             $this->makeurl('get_accounts')
-        )->accounts;
+        );
     }
 
     /**
@@ -169,6 +172,20 @@ class TgClient extends Component
     public function getChennel($channel_id)
     {
         $url = $this->makeurl('get_channel', [
+            'phone' => $this->phone,
+            'channel_id' => $channel_id
+        ]);
+        return $this->request($url);
+    }
+
+    /**
+     * @param $channel_id
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function getChannelUpdates($channel_id)
+    {
+         $url = $this->makeurl('get_channel_updates', [
             'phone' => $this->phone,
             'channel_id' => $channel_id
         ]);
@@ -308,14 +325,14 @@ class TgClient extends Component
      * @return mixed
      * @throws TgClientError
      */
-    public function joinByInviteLink($invite_link)
+    public function joinByLink($invite_link)
     {
-        $url = $this->makeurl('join_by_invite', [
+        $url = $this->makeurl('join_by_link', [
             'phone' => $this->phone
         ]);
         return $this->request($url, [
             'link' => $invite_link
-        ], 'POST');
+        ]);
     }
 
     /**
