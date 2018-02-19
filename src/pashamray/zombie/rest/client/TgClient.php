@@ -78,8 +78,8 @@ class TgClient extends Component
                 $url .= 'account/'.$params['phone'].'/channel/'.$params['channel_id'].'/users';
                 break;
                 break;
-            case 'invite_info':
-                $url .= 'account/'.$params['phone'].'/channel/invite/info';
+            case 'info_by_link':
+                $url .= 'account/'.$params['phone'].'/channel/info_by_link';
                 break;
             case 'join_by_link':
                 $url .= 'account/'.$params['phone'].'/channel/join_by_link';
@@ -328,6 +328,22 @@ class TgClient extends Component
     public function joinByLink($invite_link)
     {
         $url = $this->makeurl('join_by_link', [
+            'phone' => $this->phone
+        ]);
+        return $this->request($url, [
+            'link' => $invite_link
+        ]);
+    }
+
+    /**
+     * @param $invite_link
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function infoByLink($invite_link)
+    {
+        var_dump($invite_link);
+        $url = $this->makeurl('info_by_link', [
             'phone' => $this->phone
         ]);
         return $this->request($url, [
