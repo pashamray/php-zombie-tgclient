@@ -77,6 +77,8 @@ class TgClient extends Component
             case 'channel_get_users':
                 $url .= 'account/'.$params['phone'].'/channel/'.$params['channel_id'].'/users';
                 break;
+            case 'chat_send_message':
+                $url .= 'account/'.$params['phone'].'/chat/'.$params['chat_id'].'/send/message';
                 break;
             case 'info_by_link':
                 $url .= 'account/'.$params['phone'].'/channel/info_by_link';
@@ -238,6 +240,23 @@ class TgClient extends Component
         return $this->request($url, [
             'group_id' => $group_id,
             'text' => $msg
+        ], 'POST');
+    }
+
+    /**
+     * @param $chat_id
+     * @param $text
+     * @return mixed
+     * @throws TgClientError
+     */
+    public function chatSendMessage($chat_id, $text)
+    {
+         $url = $this->makeurl('chat_send_message', [
+             'phone' => $this->phone,
+             'chat_id' => $chat_id
+        ]);
+        return $this->request($url, [
+            'text' => $text
         ], 'POST');
     }
 
