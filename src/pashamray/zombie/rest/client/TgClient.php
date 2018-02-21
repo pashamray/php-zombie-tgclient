@@ -59,7 +59,7 @@ class TgClient extends Component
                 $url .= 'account/'.$params['phone'].'/code/send';
                 break;
             case 'account_send_p2fa':
-                $url .= 'account/'.$params['phone'].'/send/2fa_pass';
+                $url .= 'account/'.$params['phone'].'/password/send';
                 break;
             case 'get_dialogs':
             case 'get_channels':
@@ -269,7 +269,7 @@ class TgClient extends Component
         $url = $this->makeurl('account_add', [
             'phone' => $this->phone
         ]);
-        return $this->request($url);
+        return $this->request($url, [], 'POST');
     }
 
     /**
@@ -293,7 +293,7 @@ class TgClient extends Component
         $url = $this->makeurl('account_request_code', [
             'phone' => $this->phone
         ]);
-        return $this->request($url, [], 'POST');
+        return $this->request($url);
     }
 
     /**
