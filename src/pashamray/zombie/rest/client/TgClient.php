@@ -40,7 +40,7 @@ class TgClient extends Component
         switch ($method)
         {
             case 'send_user_msg':
-                $url .= 'account/'.$params['phone'].'/send/msg/user';
+                $url .= 'account/'.$params['phone'].'/user/'.$params['user_id'].'/send/message';
                 break;
             case 'send_msg_group':
                 $url .= 'account/'.$params['phone'].'/send/msg/group';
@@ -215,13 +215,13 @@ class TgClient extends Component
      * @return mixed
      * @throws TgClientError
      */
-    public function userSendMessage($user_id, $text)
+    public function sendMessageToUser($user_id, $text)
     {
         $url = $this->makeurl('send_user_msg', [
             'phone' => $this->phone,
+            'user_id' => $user_id,
         ]);
         return $this->request($url, [
-            'user_id' => $user_id,
             'text' => $text
         ], 'POST');
     }
@@ -377,7 +377,7 @@ class TgClient extends Component
      * @return mixed
      * @throws TgClientError
      */
-    public function channelGetUsers($channel_id, $offset = 0, $limit = 100)
+    public function getChatUsers($channel_id, $offset = 0, $limit = 100)
     {
         $url = $this->makeurl('channel_get_users', [
             'phone' => $this->phone,
@@ -387,6 +387,6 @@ class TgClient extends Component
         return $this->request($url, [
             'offset' => $offset,
             'limit' => $limit
-        ])->users;
+        ]);
     }
 }
