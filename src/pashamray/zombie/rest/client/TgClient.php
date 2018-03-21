@@ -211,18 +211,20 @@ class TgClient extends Component
 
     /**
      * @param $user_id
+     * @param $access_hash
      * @param $text
      * @return mixed
      * @throws TgClientError
      */
-    public function sendMessageToUser($user_id, $text)
+    public function sendMessageToUser($user_id, $access_hash, $text)
     {
         $url = $this->makeurl('send_user_msg', [
             'phone' => $this->phone,
             'user_id' => $user_id,
         ]);
         return $this->request($url, [
-            'text' => $text
+            'text' => $text,
+            'access_hash' => $access_hash
         ], 'POST');
     }
 
