@@ -185,13 +185,16 @@ class TgClient extends Component
      * @return mixed
      * @throws TgClientError
      */
-    public function getChannelUpdates($channel_id)
+    public function getChannelUpdates($channel_id, $limit = 100, $from = 'now -1 day')
     {
          $url = $this->makeurl('get_channel_updates', [
-            'phone' => $this->phone,
-            'channel_id' => $channel_id
+             'phone' => $this->phone,
+             'channel_id' => $channel_id
         ]);
-        return $this->request($url);
+        return $this->request($url, [
+            'limit' => $limit,
+            'offset_date' => date('Y-m-d H:i', strtotime($from))
+        ]);
     }
 
     /**
